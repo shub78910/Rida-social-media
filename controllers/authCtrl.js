@@ -1,10 +1,9 @@
-import { Users } from "../models/user";
+import { Users } from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import Express from "express";
 
 const authCtrl = {
-  register: async (req: Express.Request, res: Express.Response) => {
+  register: async (req, res) => {
     try {
       const { fullname, username, email, password, gender } = req.body;
       let newUserName = username.toLowerCase().replace(/ /g, "");
@@ -140,7 +139,7 @@ const createAccessToken = (payload) => {
   });
 };
 
-const createRefreshToken = (payload: object) => {
+const createRefreshToken = (payload) => {
   return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: "30d",
   });
