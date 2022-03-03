@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-// import { login } from '../redux/actions/authAction'
+import { login } from '../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,7 +14,7 @@ const Login = () => {
     const [typePass, setTypePass] = useState(false)
 
     // const { auth } = useSelector(state => state)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const history = useRouter()
 
     // useEffect(() => {
@@ -29,8 +29,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(userData);
-
-        // dispatch(login(userData))
+        dispatch(login(userData))
     }
 
     return (
