@@ -1,6 +1,6 @@
-import { Users } from "../models/user.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+const Users = require("../models/user.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const authCtrl = {
   register: async (req, res) => {
@@ -56,11 +56,13 @@ const authCtrl = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
+      console.log("got emeuian");
 
-      const user = await Users.findOne({ email }).populate(
-        "followers following",
-        "avatar username fullname followers following"
-      );
+      const user = await Users.findOne({ email });
+      // .populate(
+      //   "followers following",
+      //   "avatar username fullname followers following"
+      // );
 
       if (!user)
         return res.status(400).json({ msg: "This email does not exist." });
@@ -109,12 +111,11 @@ const authCtrl = {
         async (err, result) => {
           if (err) return res.status(400).json({ msg: "Please login now." });
 
-          const user = await Users.findById(result.id)
-            .select("-password")
-            .populate(
-              "followers following",
-              "avatar username fullname followers following"
-            );
+          const user = await Users.findById(result.id).select("-password");
+          // .populate(
+          //   "followers following",
+          //   "avatar username fullname followers following"
+          // );
 
           if (!user)
             return res.status(400).json({ msg: "This does not exist." });
@@ -122,6 +123,7 @@ const authCtrl = {
           const access_token = createAccessToken({ id: result.id });
 
           res.json({
+            msg: "token generated",
             access_token,
             user,
           });
@@ -145,4 +147,4 @@ const createRefreshToken = (payload) => {
   });
 };
 
-export default authCtrl;
+module.exports = authCtrl;
