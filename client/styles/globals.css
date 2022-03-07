@@ -7,6 +7,7 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: white;
 }
 
 code {
@@ -38,8 +39,24 @@ img {
   object-fit: cover;
 }
 
+.pagesWrapper {
+  height: 100vh;
+}
+
+.alertWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /* -------- AUTH ---------- */
 @import url("./auth.css");
+
+/* -------- HEADER ---------- */
+@import url("./header.css");
+
+/* -------- AVATAR ---------- */
+@import url("./avatar.css");
 
 /* --------- Responsive ------ */
 @media (max-width: 766px) {

@@ -1,14 +1,14 @@
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import "../../styles/globals.css";
+import App from "../components/App";
 import store from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Provider store={store}>
-        <Component {...pageProps} />
+        <App Component={Component} pageProps={pageProps} />
       </Provider>
-      ;
     </div>
   );
 }

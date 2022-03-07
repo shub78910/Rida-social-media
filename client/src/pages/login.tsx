@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { login } from '../redux/actions/authAction'
+import { login, refreshToken } from '../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,16 +10,24 @@ const Login = () => {
     const initialState = { email: '', password: '' }
     const [userData, setUserData] = useState(initialState)
     const { email, password } = userData
-
+    const { auth }: any = useSelector(state => state)
     const [typePass, setTypePass] = useState(false)
-
-    // const { auth } = useSelector(state => state)
+    const router = useRouter();
     const dispatch = useDispatch()
-    const history = useRouter()
 
-    // useEffect(() => {
-    //     if (auth.token) history.push("/")
-    // }, [auth.token, history])
+    useEffect(() => {
+
+        if (auth.token) {
+            router.push('/')
+        }
+        else {
+            router.push('/login')
+        }
+    }, [auth])
+
+    useEffect(() => {
+        dispatch(refreshToken())
+    }, [])
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target
@@ -28,12 +36,11 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(userData);
         dispatch(login(userData))
     }
 
     return (
-        <div className="auth_page">
+        <div className="auth_page  mt-5">
             <form onSubmit={handleSubmit}>
                 <h3 className="text-uppercase text-center mb-4">Rida</h3>
 

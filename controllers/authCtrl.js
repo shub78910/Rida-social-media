@@ -1,4 +1,4 @@
-const Users = require("../models/user.js");
+const Users = require("../models/userModel.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -74,8 +74,7 @@ const authCtrl = {
 
       res.cookie("refreshtoken", refresh_token, {
         httpOnly: true,
-        path: "/api/refresh_token",
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30days
+        expiresIn: 30 * 24 * 60 * 60 * 1000, // 30days
       });
 
       res.json({
@@ -101,7 +100,8 @@ const authCtrl = {
   generateAccessToken: async (req, res) => {
     try {
       const rf_token = req.cookies.refreshtoken;
-      if (!rf_token) return res.status(400).json({ msg: "Please login now." });
+      if (!rf_token)
+        return res.status(400).json({ msg: "Please login now. up" });
 
       jwt.verify(
         rf_token,

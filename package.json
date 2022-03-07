@@ -23,7 +23,10 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "react-hot-toast": "^2.2.0",
+    "react-loading-components": "^1.1.12",
+    "react-toastify": "^8.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -2,12 +2,7 @@ import { GLOBALTYPES } from "../actions/globalTypes";
 
 const initialState = {};
 
-interface action {
-  payload: object;
-  type: string;
-}
-
-const notifyReducer = (state = initialState, action: action) => {
+const alertReducer = (state = initialState, action) => {
   switch (action.type) {
     case GLOBALTYPES.ALERT:
       return action.payload;
@@ -16,4 +11,4 @@ const notifyReducer = (state = initialState, action: action) => {
   }
 };
 
-export default notifyReducer;
+export default alertReducer;

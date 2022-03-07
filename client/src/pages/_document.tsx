@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <title>Rida</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <body className="my-5 bg-fixed bg-green-100 dark:bg-black dark:from-dark-500 dark:to-dark-700 dark:text-white">
+        <body className="bg-fixed bg-green-100 dark:bg-black dark:from-dark-500 dark:to-dark-700 dark:text-white">
           <Main />
           <NextScript />
         </body>

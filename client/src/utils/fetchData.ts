@@ -7,11 +7,20 @@ export const getDataAPI = async (url: string, token: string) => {
   return res;
 };
 
-export const postDataAPI = async (url: string, post: any, token?: string) => {
-  const res = await axios.post(`http://localhost:5000/api/${url}`, post, {
-    headers: { Authorization: token },
+export const postDataAPI = async (url: string, post?: any, token?: string) => {
+  const res = await fetch(`http://localhost:5000/api/${url}`, {
+    method: "POST",
+    redirect: "follow",
+    credentials: "include", // Don't forget to specify this if you need cookies
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(post),
   });
-  return res;
+
+  return res.json();
 };
 
 export const putDataAPI = async (url: string, post: any, token?: string) => {

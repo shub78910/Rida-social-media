@@ -22,7 +22,7 @@ mongoose.connect(
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 
 // Socket
@@ -37,8 +37,8 @@ const http = require("http").createServer(app);
 // ExpressPeerServer(http, { path: "/" });
 
 // Routes
-app.use("/api", require("./routes/authRouter.js"));
-// app.use("/api", require("./routes/userRouter"));
+app.use("/api", require("./routes/authRouter"));
+app.use("/api", require("./routes/userRouter"));
 // app.use("/api", require("./routes/postRouter"));
 // app.use("/api", require("./routes/commentRouter"));
 // app.use("/api", require("./routes/notifyRouter"));
